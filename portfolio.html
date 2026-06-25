@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Diya Jangid — ML Engineer & Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #070B14;
+  --bg2: #0D1321;
+  --bg3: #111827;
+  --indigo: #6366F1;
+  --violet: #8B5CF6;
+  --cyan: #06B6D4;
+  --green: #10B981;
+  --text: #F1F5F9;
+  --muted: #94A3B8;
+  --border: rgba(99,102,241,0.18);
+  --card: rgba(255,255,255,0.03);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--indigo);border-radius:4px;}
+
+/* CANVAS */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(7,11,20,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.3px;transition:color .3s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{padding:8px 22px;border-radius:8px;background:linear-gradient(135deg,var(--indigo),var(--violet));color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:opacity .3s;}
+.nav-cta:hover{opacity:0.85;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;padding:120px 60px 80px;}
+.hero-inner{max-width:900px;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;border:1px solid var(--border);background:rgba(99,102,241,0.08);margin-bottom:28px;font-size:13px;color:var(--cyan);font-family:'Fira Code',monospace;}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,88px);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:20px;}
+.h1-line1{display:block;color:var(--text);}
+.h1-line2{display:block;background:linear-gradient(135deg,var(--indigo) 0%,var(--violet) 40%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:18px;color:var(--muted);line-height:1.7;max-width:620px;margin:0 auto 40px;}
+.hero-sub span{color:var(--text);font-weight:500;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:14px 32px;border-radius:10px;background:linear-gradient(135deg,var(--indigo),var(--violet));color:#fff;font-size:15px;font-weight:600;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.4);}
+.btn-secondary{padding:14px 32px;border-radius:10px;border:1px solid var(--border);color:var(--text);font-size:15px;font-weight:500;text-decoration:none;background:var(--card);transition:border-color .3s,background .3s;}
+.btn-secondary:hover{border-color:var(--indigo);background:rgba(99,102,241,0.08);}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:64px;padding-top:40px;border-top:1px solid var(--border);}
+.stat-val{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-label{font-size:13px;color:var(--muted);margin-top:4px;}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:100px 60px;}
+.section-eyebrow{font-family:'Fira Code',monospace;font-size:12px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1px;margin-bottom:16px;}
+.section-sub{color:var(--muted);font-size:16px;max-width:560px;line-height:1.7;}
+.section-header{margin-bottom:60px;}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;}
+.about-code{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.code-header{padding:14px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02);}
+.code-dot{width:12px;height:12px;border-radius:50%;}
+.code-body{padding:24px;font-family:'Fira Code',monospace;font-size:13.5px;line-height:1.9;}
+.c-keyword{color:#C792EA;}
+.c-class{color:#FFCB6B;}
+.c-string{color:#C3E88D;}
+.c-num{color:#F78C6C;}
+.c-comment{color:#546E7A;}
+.c-cyan{color:#89DDFF;}
+.about-info{display:flex;flex-direction:column;gap:24px;}
+.info-card{padding:20px 24px;border-radius:12px;border:1px solid var(--border);background:var(--card);}
+.info-card-label{font-size:11px;color:var(--cyan);font-family:'Fira Code',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.info-card-val{font-size:15px;font-weight:500;color:var(--text);}
+.flag-row{display:flex;gap:10px;margin-top:8px;}
+.flag{padding:4px 12px;border-radius:20px;font-size:12px;background:rgba(99,102,241,0.1);border:1px solid var(--border);color:var(--muted);}
+
+/* SKILLS */
+#skills{background:var(--bg);}
+.skills-wrap{max-width:1100px;margin:0 auto;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.skill-card{padding:24px;border-radius:16px;border:1px solid var(--border);background:var(--card);transition:border-color .3s,transform .3s;}
+.skill-card:hover{border-color:var(--indigo);transform:translateY(-4px);}
+.skill-card-icon{font-size:28px;margin-bottom:12px;}
+.skill-card-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;color:var(--text);}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#A5B4FC;}
+.tag.cyan{background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.25);color:#67E8F9;}
+.tag.violet{background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.25);color:#C4B5FD;}
+.tag.green{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.25);color:#6EE7B7;}
+
+/* PROJECTS */
+#projects{background:var(--bg2);}
+.projects-wrap{max-width:1100px;margin:0 auto;}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:24px;}
+.project-card{border-radius:20px;border:1px solid var(--border);background:var(--card);overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;}
+.project-card:hover{transform:translateY(-6px);border-color:var(--indigo);box-shadow:0 20px 60px rgba(99,102,241,0.15);}
+.project-top{padding:28px 28px 0;}
+.project-num{font-family:'Fira Code',monospace;font-size:11px;color:var(--violet);letter-spacing:2px;margin-bottom:10px;}
+.project-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:10px;}
+.project-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;}
+.project-stat{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);font-size:12px;color:var(--green);font-weight:600;margin-bottom:18px;}
+.project-bottom{padding:20px 28px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:7px;}
+.project-tag{padding:3px 11px;border-radius:20px;font-size:11.5px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);color:#A5B4FC;}
+
+/* EXPERIENCE */
+#experience{background:var(--bg);}
+.exp-wrap{max-width:900px;margin:0 auto;}
+.exp-timeline{position:relative;padding-left:36px;}
+.exp-timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--indigo),var(--violet),transparent);}
+.exp-item{position:relative;margin-bottom:48px;}
+.exp-item::before{content:'';position:absolute;left:-40px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--indigo);box-shadow:0 0 12px var(--indigo);}
+.exp-meta{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
+.exp-period{font-family:'Fira Code',monospace;font-size:12px;color:var(--cyan);padding:3px 10px;border-radius:20px;background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.2);}
+.exp-current{font-size:11px;color:var(--green);background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);padding:2px 10px;border-radius:20px;font-weight:600;}
+.exp-role{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+.exp-company{font-size:14px;color:var(--indigo);font-weight:500;margin-bottom:12px;}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.exp-bullets li{font-size:14px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;}
+.exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--indigo);}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--bg2);}
+.ach-wrap{max-width:1100px;margin:0 auto;}
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.ach-card{padding:28px;border-radius:16px;border:1px solid var(--border);background:var(--card);text-align:center;transition:transform .3s,border-color .3s;}
+.ach-card:hover{transform:translateY(-4px);border-color:var(--violet);}
+.ach-icon{font-size:36px;margin-bottom:14px;}
+.ach-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
+.ach-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+
+
+.typing-indicator{display:flex;gap:4px;align-items:center;padding:12px 16px;}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);animation:typing 1.2s infinite;}
+.typing-dot:nth-child(2){animation-delay:.2s;}
+.typing-dot:nth-child(3){animation-delay:.4s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-8px);}}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+.contact-wrap{max-width:900px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+.contact-link{display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:14px;border:1px solid var(--border);background:var(--card);text-decoration:none;color:var(--text);transition:border-color .3s,transform .3s;}
+.contact-link:hover{border-color:var(--indigo);transform:translateX(6px);}
+.contact-link-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-link-label{font-size:12px;color:var(--muted);margin-bottom:2px;}
+.contact-link-val{font-size:14px;font-weight:500;}
+.location-cards{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
+.loc-card{padding:16px 20px;border-radius:12px;border:1px solid var(--border);background:var(--card);display:flex;align-items:center;gap:14px;}
+.loc-flag{font-size:24px;}
+.loc-info-title{font-size:14px;font-weight:600;}
+.loc-info-sub{font-size:12px;color:var(--muted);}
+
+/* FOOTER */
+footer{background:var(--bg);padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.footer-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-copy{font-size:13px;color:var(--muted);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .3s;}
+.footer-links a:hover{color:var(--text);}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* GLOW ORBS */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.orb-1{width:500px;height:500px;background:rgba(99,102,241,0.12);top:-100px;right:-100px;}
+.orb-2{width:400px;height:400px;background:rgba(6,182,212,0.08);bottom:-80px;left:-80px;}
+
+@media(max-width:768px){
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  section{padding:80px 24px;}
+  #hero{padding:100px 24px 60px;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
+  footer{flex-direction:column;gap:16px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DJ</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:diyajangid21@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-inner reveal">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Open to Work · India · Dubai · Germany
+    </div>
+    <h1>
+      <span class="h1-line1">Diya Jangid</span>
+      <span class="h1-line2" id="typed-title">ML Engineer.</span>
+    </h1>
+    <p class="hero-sub">
+      Fresher turning <span>raw data into real decisions</span> — building ML models, MLOps pipelines & cloud solutions that actually work.
+      <span>GATE 2026 Qualified</span> · B.Tech CSE · CGPA 9.5
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">9.5</div><div class="stat-label">CGPA</div></div>
+      <div><div class="stat-val">99%</div><div class="stat-label">Best Model Accuracy</div></div>
+      <div><div class="stat-val">4+</div><div class="stat-label">Real Projects</div></div>
+      <div><div class="stat-val">3</div><div class="stat-label">Internships</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-code">
+      <div class="code-header">
+        <div class="code-dot" style="background:#FF5F57"></div>
+        <div class="code-dot" style="background:#FEBC2E"></div>
+        <div class="code-dot" style="background:#28C840"></div>
+        <span style="margin-left:8px;font-family:'Fira Code',monospace;font-size:12px;color:#546E7A;">diya.py</span>
+      </div>
+      <div class="code-body">
+        <span class="c-keyword">class</span> <span class="c-class">Diya</span><span class="c-cyan">:</span><br/>
+        &nbsp;&nbsp;<span class="c-comment"># 🚀 About me</span><br/>
+        &nbsp;&nbsp;<span class="c-cyan">name</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="c-string">"Diya Jangid"</span><br/>
+        &nbsp;&nbsp;<span class="c-cyan">degree</span> &nbsp;&nbsp;= <span class="c-string">"B.Tech CSE · RTU"</span><br/>
+        &nbsp;&nbsp;<span class="c-cyan">cgpa</span> &nbsp;&nbsp;&nbsp;&nbsp;= <span class="c-num">9.5</span><br/>
+        &nbsp;&nbsp;<span class="c-cyan">gate</span> &nbsp;&nbsp;&nbsp;&nbsp;= <span class="c-string">"Qualified 2026 ✦"</span><br/>
+        &nbsp;&nbsp;<span class="c-cyan">status</span> &nbsp;&nbsp;= <span class="c-string">"Open to Work 🚀"</span><br/>
+        &nbsp;&nbsp;<span class="c-cyan">roles</span> &nbsp;&nbsp;&nbsp;= [<span class="c-string">"ML Engineer"</span>,<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-string">"Data Scientist"</span>,<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-string">"MLOps Engineer"</span>,<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-string">"Data Analyst"</span>]<br/>
+        &nbsp;&nbsp;<span class="c-cyan">superpower</span> = <span class="c-string">"70% → 99% ⚡"</span>
+      </div>
+    </div>
+    <div class="about-info">
+      <div class="section-eyebrow">About Me</div>
+      <div class="section-title" style="font-size:32px;">Turning Data<br/>into Decisions</div>
+      <p style="color:var(--muted);font-size:15px;line-height:1.8;">I'm a Computer Science fresher with a deep passion for Machine Learning, Cloud, and MLOps. I don't just build models — I make them explainable, scalable, and deployable.</p>
+      <div class="info-card">
+        <div class="info-card-label">Currently</div>
+        <div class="info-card-val">🔧 MLOps Intern @ Linux World Informatics</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Looking for opportunities in</div>
+        <div class="flag-row">
+          <span class="flag">🇮🇳 India</span>
+          <span class="flag">🇦🇪 Dubai</span>
+          <span class="flag">🇩🇪 Germany</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Tech Stack</div>
+      <div class="section-title">What I Work With</div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-title">Machine Learning & AI</div>
+        <div class="skill-tags">
+          <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">SHAP</span><span class="tag">LIME</span><span class="tag">SMOTE</span><span class="tag">Streamlit</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🧠</div>
+        <div class="skill-card-title">Deep Learning</div>
+        <div class="skill-tags">
+          <span class="tag violet">TensorFlow</span><span class="tag violet">PyTorch</span><span class="tag violet">Keras</span><span class="tag violet">CNN</span><span class="tag violet">LSTM</span><span class="tag violet">Transfer Learning</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-title">Cloud & DevOps</div>
+        <div class="skill-tags">
+          <span class="tag cyan">AWS EC2</span><span class="tag cyan">S3</span><span class="tag cyan">Lambda</span><span class="tag cyan">IAM</span><span class="tag cyan">CloudWatch</span><span class="tag cyan">Terraform</span><span class="tag cyan">Boto3</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">Data & Analytics</div>
+        <div class="skill-tags">
+          <span class="tag green">Power BI</span><span class="tag green">Pandas</span><span class="tag green">NumPy</span><span class="tag green">Matplotlib</span><span class="tag green">Seaborn</span><span class="tag green">MySQL</span><span class="tag green">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">👁️</div>
+        <div class="skill-card-title">Computer Vision & NLP</div>
+        <div class="skill-tags">
+          <span class="tag">OpenCV</span><span class="tag">NLTK</span><span class="tag">PySpark</span><span class="tag">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">💻</div>
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag violet">Python</span><span class="tag violet">SQL</span><span class="tag violet">C++</span><span class="tag violet">Excel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Projects</div>
+      <div class="section-title">Things I've Built</div>
+      <div class="section-sub">Real-world ML and cloud projects — no toy datasets, no copy-paste code.</div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-num">01 — CLOUD + AI</div>
+          <div class="project-title">🎙️ Voice-Controlled AWS Terminal</div>
+          <div class="project-desc">A fully voice-operated backend CLI to manage AWS infrastructure. Control all EC2 and S3 operations using natural language commands via Boto3. No frontend needed — pure backend power.</div>
+          <div class="project-stat">✦ All AWS EC2 & S3 operations via voice</div>
+        </div>
+        <div class="project-bottom">
+          <span class="project-tag">Python</span><span class="project-tag">Boto3</span><span class="project-tag">AWS EC2</span><span class="project-tag">AWS S3</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-num">02 — COMPUTER VISION</div>
+          <div class="project-title">🍎 Fruit Classifier: Fresh vs Rotten</div>
+          <div class="project-desc">CNN model to classify apples, bananas & oranges as fresh or rotten. Started from scratch at 70% — switched to Transfer Learning and hit 99%. Outputs annotated image with confidence %.</div>
+          <div class="project-stat">⚡ 70% → 99% accuracy via Transfer Learning</div>
+        </div>
+        <div class="project-bottom">
+          <span class="project-tag">Python</span><span class="project-tag">CNN</span><span class="project-tag">Transfer Learning</span><span class="project-tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-num">03 — EXPLAINABLE AI</div>
+          <div class="project-title">🏦 Loan Approval System</div>
+          <div class="project-desc">ML pipeline using Logistic Regression, Random Forest & XGBoost with ~98% accuracy. SHAP & LIME for full interpretability. SMOTE for class imbalance. Deployed as a live Streamlit web app.</div>
+          <div class="project-stat">✦ ~98% accuracy · SHAP + LIME explainability</div>
+        </div>
+        <div class="project-bottom">
+          <span class="project-tag">XGBoost</span><span class="project-tag">SHAP</span><span class="project-tag">LIME</span><span class="project-tag">Streamlit</span><span class="project-tag">SMOTE</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-num">04 — NLP</div>
+          <div class="project-title">💬 Social Media Sentiment Analysis</div>
+          <div class="project-desc">End-to-end NLP project on Twitter, YouTube & Amazon review data. Classifies comments as Positive, Negative or Neutral using CNN, Naive Bayes & LSTM. 98% accuracy and still improving.</div>
+          <div class="project-stat">✦ 98% accuracy across 3 platforms</div>
+        </div>
+        <div class="project-bottom">
+          <span class="project-tag">LSTM</span><span class="project-tag">CNN</span><span class="project-tag">Naive Bayes</span><span class="project-tag">NLP</span><span class="project-tag">NLTK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Experience</div>
+      <div class="section-title">Where I've Worked</div>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <span class="exp-period">June 2026 – Present</span>
+          <span class="exp-current">● Current</span>
+        </div>
+        <div class="exp-role">MLOps Engineer Intern</div>
+        <div class="exp-company">Linux World Informatics Pvt. Ltd.</div>
+        <ul class="exp-bullets">
+          <li>Working with AWS cloud tools and Terraform to build and support ML model deployment workflows.</li>
+          <li>Learning and applying MLOps practices including model lifecycle management, versioning, and deployment.</li>
+          <li>Exploring monitoring solutions for production model performance and reliability.</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <span class="exp-period">June 2025 – July 2025</span>
+        </div>
+        <div class="exp-role">Data Analyst Intern</div>
+        <div class="exp-company">Elevate Labs</div>
+        <ul class="exp-bullets">
+          <li>Performed EDA on multiple real-world datasets to extract actionable business insights.</li>
+          <li>Wrote complex MySQL queries for data extraction, transformation, and reporting.</li>
+          <li>Built interactive Power BI dashboards to visualize KPIs and support data-driven decisions.</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <span class="exp-period">May 2024 – July 2024</span>
+        </div>
+        <div class="exp-role">Machine Learning Engineer Intern</div>
+        <div class="exp-company">Elsystems and Services</div>
+        <ul class="exp-bullets">
+          <li>Built supervised ML models including price detection systems achieving 99% accuracy.</li>
+          <li>Developed an end-to-end Movie Recommendation System — ranked best among all interns.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="ach-wrap">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Achievements</div>
+      <div class="section-title">Milestones</div>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card reveal">
+        <div class="ach-icon">✦</div>
+        <div class="ach-title">GATE 2026 Qualified</div>
+        <div class="ach-desc">Qualified in both Computer Science & Data Analytics domains — a rare achievement for a fresher.</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">🏅</div>
+        <div class="ach-title">Amazon ML Challenge</div>
+        <div class="ach-desc">Participated in Amazon's prestigious machine learning challenge.</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">🇮🇳</div>
+        <div class="ach-title">Smart India Hackathon</div>
+        <div class="ach-desc">Competed in India's largest national-level hackathon.</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">Best Intern Project</div>
+        <div class="ach-desc">Movie Recommendation System ranked #1 among all interns at Elsystems with 99% accuracy.</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">🌱</div>
+        <div class="ach-title">Build with India</div>
+        <div class="ach-desc">Participated in the Build with India innovation hackathon.</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">⚡</div>
+        <div class="ach-title">70% → 99% Accuracy</div>
+        <div class="ach-desc">Independently improved fruit classifier from 70% to 99% using Transfer Learning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="section-eyebrow">Contact</div>
+        <div class="section-title">Let's Work Together</div>
+        <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-top:12px;">I'm actively looking for full-time roles in ML, MLOps, Data Science, and Data Analytics. Let's connect!</p>
+        <div class="contact-links">
+          <a href="mailto:diyajangid21@gmail.com" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(234,67,53,0.15);">📧</div>
+            <div><div class="contact-link-label">Email</div><div class="contact-link-val">diyajangid21@gmail.com</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/diya-jangid" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(10,102,194,0.15);">💼</div>
+            <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-val">linkedin.com/in/diya-jangid</div></div>
+          </a>
+          <a href="https://github.com/Diya123321" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(255,255,255,0.08);">🐙</div>
+            <div><div class="contact-link-label">GitHub</div><div class="contact-link-val">github.com/Diya123321</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-eyebrow" style="margin-top:0;">Open to Opportunities In</div>
+        <div class="location-cards" style="margin-top:20px;">
+          <div class="loc-card">
+            <div class="loc-flag">🇮🇳</div>
+            <div><div class="loc-info-title">India</div><div class="loc-info-sub">Bangalore · Hyderabad · Remote</div></div>
+          </div>
+          <div class="loc-card">
+            <div class="loc-flag">🇦🇪</div>
+            <div><div class="loc-info-title">Dubai, UAE</div><div class="loc-info-sub">Open to relocation</div></div>
+          </div>
+          <div class="loc-card">
+            <div class="loc-flag">🇩🇪</div>
+            <div><div class="loc-info-title">Germany</div><div class="loc-info-sub">Open to relocation</div></div>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding:20px 24px;border-radius:14px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.06);">
+          <div style="font-size:12px;color:var(--cyan);font-family:'Fira Code',monospace;letter-spacing:2px;margin-bottom:8px;">GATE 2026</div>
+          <div style="font-size:15px;font-weight:600;">Qualified in CSE & Data Analytics</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px;">Both domains — rare for a fresher ✦</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Diya Jangid</div>
+  <div class="footer-copy">© 2026 · Built with ❤️ · Open to Work</div>
+  <div class="footer-links">
+    <a href="https://github.com/Diya123321" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/diya-jangid" target="_blank">LinkedIn</a>
+    <a href="mailto:diyajangid21@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+// PARTICLES
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 1.5 + 0.5,
+    color: ['rgba(99,102,241,', 'rgba(139,92,246,', 'rgba(6,182,212,'][Math.floor(Math.random() * 3)]
+  });
+}
+function animParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color + '0.7)';
+    ctx.fill();
+  });
+  particles.forEach((p, i) => {
+    particles.slice(i + 1).forEach(q => {
+      const d = Math.hypot(p.x - q.x, p.y - q.y);
+      if (d < 120) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+        ctx.strokeStyle = `rgba(99,102,241,${0.12 * (1 - d / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    });
+  });
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// TYPED TITLE
+const titles = ['ML Engineer.', 'Data Scientist.', 'MLOps Engineer.', 'Data Analyst.'];
+let ti = 0, ci = 0, deleting = false;
+const el = document.getElementById('typed-title');
+function typeAnim() {
+  const cur = titles[ti];
+  if (!deleting) {
+    el.textContent = cur.slice(0, ++ci);
+    if (ci === cur.length) { deleting = true; setTimeout(typeAnim, 1800); return; }
+  } else {
+    el.textContent = cur.slice(0, --ci);
+    if (ci === 0) { deleting = false; ti = (ti + 1) % titles.length; }
+  }
+  setTimeout(typeAnim, deleting ? 60 : 100);
+}
+typeAnim();
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// AI CHAT
+const SYSTEM_PROMPT = `You are a friendly AI assistant on Diya Jangid's portfolio website. You answer questions about Diya concisely and professionally.
+
+Key facts about Diya:
+- Name: Diya Jangid | Email: diyajangid21@gmail.com
+- B.Tech Computer Science, Rajasthan Technical University, 2022-2026, CGPA 9.5
+- GATE 2026 Qualified in both CSE and Data Analytics domains
+- Currently: MLOps Intern at Linux World Informatics (June 2026–present), learning AWS, Terraform
+- Past internships: Data Analyst at Elevate Labs (June–July 2025), ML Engineer at Elsystems (May–July 2024)
+- Skills: Python, SQL, C++, TensorFlow, PyTorch, Scikit-learn, Keras, OpenCV, NLTK, XGBoost, AWS (EC2, S3, IAM, VPC, CloudWatch, Lambda, CloudFormation), Terraform, Boto3, Power BI, Pandas, NumPy, MySQL, PostgreSQL, Streamlit
+- Projects: Voice-Controlled AWS Terminal (Boto3), Fruit Classifier CNN (70%→99% with Transfer Learning), Explainable AI Loan Approval (~98% accuracy, SHAP+LIME+Streamlit), Social Media Sentiment Analysis (98% accuracy, LSTM+CNN)
+- Looking for: ML Engineer, Data Scientist, MLOps Engineer, Data Analyst roles in India, Dubai, or Germany
+- GitHub: github.com/Diya123321 | LinkedIn: linkedin.com/in/diya-jangid
+Keep answers short (2-4 sentences max), warm, and professional.`;
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const btn = document.getElementById('chat-send');
+  const msgs = document.getElementById('chat-messages');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  btn.disabled = true;
+
+  const userMsg = document.createElement('div');
+  userMsg.className = 'msg msg-user';
+  userMsg.textContent = text;
+  msgs.appendChild(userMsg);
+
+  const typing = document.createElement('div');
+  typing.className = 'msg msg-ai';
+  typing.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || "Sorry, I couldn't get a response right now!";
+    typing.innerHTML = reply;
+  } catch (e) {
+    typing.innerHTML = "Hmm, something went wrong. Try again in a moment!";
+  }
+  btn.disabled = false;
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function quickAsk(q) {
+  document.getElementById('chat-input').value = q;
+  sendMessage();
+}
+
+document.getElementById('chat-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendMessage();
+});
+</script>
+</body>
+</html>
