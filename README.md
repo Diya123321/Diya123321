@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,50:8B5CF6,100:06B6D4&height=220&section=header&text=Diya%20Jangid&fontSize=65&fontColor=ffffff&fontAlignY=38&desc=ML%20Engineer%20%E2%9C%A6%20MLOps%20%E2%9C%A6%20Data%20Scientist%20%E2%9C%A6%20Data%20Analyst&descAlignY=58&descSize=19&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,50:8B5CF6,100:06B6D4&height=220&section=header&text=Jangid%20Diya&fontSize=65&fontColor=ffffff&fontAlignY=38&desc=ML%20Engineer%20%E2%9C%A6%20MLOps%20%E2%9C%A6%20Data%20Scientist%20%E2%9C%A6%20Data%20Analyst&descAlignY=58&descSize=19&animation=fadeIn"/>
 
 
 
@@ -42,7 +42,7 @@
 
 ```python
 class Diya:
-    name        = "Diya Jangid"
+    name        = "Jangid Diya"
     degree      = "B.Tech CSE @ RTU (2022–2026)"
     cgpa        = 9.5  # 🌟
     gate        = "Qualified 2026 — CSE & DA ✦"
@@ -50,6 +50,4 @@ class Diya:
     looking_for = ["ML Engineer 🤖", "Data Scientist 📊",
                    "MLOps Engineer ☁️", "Data Analyst 📈"]
     locations   = ["India 🇮🇳", "Dubai 🇦🇪", "Germany 🇩🇪"]
-    superpower  = "70% → 99% accuracy via Transfer Learning ⚡"
-    fun_fact    = "I built a voice-controlled AWS terminal 🎙️"
     status      = "Open to Work 🚀"
